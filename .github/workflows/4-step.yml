@@ -17,7 +17,7 @@ jobs:
   find_exercise:
     if: github.event.pull_request.merged == true
     name: Find Exercise Issue
-    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.7.0
+    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@f7e5b28a894634a98b29a4b5802816df69e8c499 # v0.7.0
 
   check_step_work:
     name: Check step work
@@ -29,10 +29,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Get response templates
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
@@ -40,14 +40,14 @@ jobs:
 
       - name: Find last comment
         id: find-last-comment
-        uses: peter-evans/find-comment@v3
+        uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e # v3
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           direction: last
 
       - name: Update comment - checking work
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@608e41b19bc973020ec0e189ebfdae935d7fe0cc # v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -74,7 +74,7 @@ jobs:
 
       - name: Update comment - step results
         if: ${{ github.event.repository.private == false }}
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@608e41b19bc973020ec0e189ebfdae935d7fe0cc # v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -101,24 +101,24 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Get response templates
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
           ref: v0.7.0
 
       - name: Create comment - step finished - final review next
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@608e41b19bc973020ec0e189ebfdae935d7fe0cc # v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: exercise-toolkit/markdown-templates/step-feedback/lesson-review.md
 
       - name: Create comment - add review content
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@608e41b19bc973020ec0e189ebfdae935d7fe0cc # v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -132,7 +132,7 @@ jobs:
   finish_exercise:
     name: Finish Exercise
     needs: [find_exercise, post_review_content]
-    uses: skills/exercise-toolkit/.github/workflows/finish-exercise.yml@v0.9.3
+    uses: skills/exercise-toolkit/.github/workflows/finish-exercise.yml@904f29a5aa21fb6ccd0ecbbd5e7b668fd92b9ff1 # v0.9.3
     with:
       issue-url: ${{ needs.find_exercise.outputs.issue-url }}
       exercise-title: "GitHub Copilot Code Review"
