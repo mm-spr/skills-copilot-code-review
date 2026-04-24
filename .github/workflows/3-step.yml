@@ -16,7 +16,7 @@ env:
 jobs:
   find_exercise:
     name: Find Exercise Issue
-    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.7.0
+    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@f7e5b28a894634a98b29a4b5802816df69e8c499 # v0.7.0
 
   check_step_work:
     name: Check step work
@@ -28,10 +28,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Get response templates
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
@@ -39,14 +39,14 @@ jobs:
 
       - name: Find last comment
         id: find-last-comment
-        uses: peter-evans/find-comment@v3
+        uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e # v3
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           direction: last
 
       - name: Update comment - checking work
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@608e41b19bc973020ec0e189ebfdae935d7fe0cc # v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -58,7 +58,7 @@ jobs:
       - name: Check if copilot-instructions.md file exists
         id: check-copilot-instructions
         continue-on-error: true
-        uses: skills/exercise-toolkit/actions/file-exists@v0.7.0
+        uses: skills/exercise-toolkit/actions/file-exists@f7e5b28a894634a98b29a4b5802816df69e8c499 # v0.7.0
         with:
           file: .github/copilot-instructions.md
 
@@ -66,7 +66,7 @@ jobs:
       - name: Check if frontend instructions file exists
         id: check-frontend-instructions
         continue-on-error: true
-        uses: skills/exercise-toolkit/actions/file-exists@v0.7.0
+        uses: skills/exercise-toolkit/actions/file-exists@f7e5b28a894634a98b29a4b5802816df69e8c499 # v0.7.0
         with:
           file: .github/instructions/frontend.instructions.md
 
@@ -74,12 +74,12 @@ jobs:
       - name: Check if backend instructions file exists
         id: check-backend-instructions
         continue-on-error: true
-        uses: skills/exercise-toolkit/actions/file-exists@v0.7.0
+        uses: skills/exercise-toolkit/actions/file-exists@f7e5b28a894634a98b29a4b5802816df69e8c499 # v0.7.0
         with:
           file: .github/instructions/backend.instructions.md
 
       - name: Update comment - step results
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@608e41b19bc973020ec0e189ebfdae935d7fe0cc # v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -110,17 +110,17 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Get response templates
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
           ref: v0.7.0
 
       - name: Create comment - step finished
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@608e41b19bc973020ec0e189ebfdae935d7fe0cc # v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -129,14 +129,14 @@ jobs:
             next_step_number: 4
 
       - name: Create comment - add step content
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@608e41b19bc973020ec0e189ebfdae935d7fe0cc # v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: ${{ env.STEP_4_FILE }}
 
       - name: Create comment - watching for progress
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@608e41b19bc973020ec0e189ebfdae935d7fe0cc # v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
