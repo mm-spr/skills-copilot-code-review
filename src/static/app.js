@@ -210,27 +210,62 @@ document.addEventListener("DOMContentLoaded", () => {
       const phase = getAnnouncementPhase(announcement);
       const item = document.createElement("article");
       item.className = `announcement-admin-item announcement-${phase}`;
-      item.innerHTML = `
-        <div class="announcement-admin-copy">
-          <div class="announcement-admin-meta">
-            <span class="announcement-state-pill ${phase}">${phase}</span>
-            <span>${announcement.start_date ? `Starts ${formatAnnouncementDate(
-              announcement.start_date
-            )}` : "Visible immediately"}</span>
-            <span>Expires ${formatAnnouncementDate(announcement.expires_at)}</span>
-          </div>
-          <h5>${announcement.title}</h5>
-          <p>${announcement.message}</p>
-        </div>
-        <div class="announcement-admin-actions">
-          <button type="button" class="secondary-button announcement-edit-button" data-id="${announcement.id}">
-            Edit
-          </button>
-          <button type="button" class="danger-button announcement-delete-button" data-id="${announcement.id}">
-            Delete
-          </button>
-        </div>
-      `;
+
+      const copy = document.createElement("div");
+      copy.className = "announcement-admin-copy";
+
+      const meta = document.createElement("div");
+      meta.className = "announcement-admin-meta";
+
+      const phasePill = document.createElement("span");
+      phasePill.className = `announcement-state-pill ${phase}`;
+      phasePill.textContent = phase;
+
+      const startInfo = document.createElement("span");
+      startInfo.textContent = announcement.start_date
+        ? `Starts ${formatAnnouncementDate(announcement.start_date)}`
+        : "Visible immediately";
+
+      const expiryInfo = document.createElement("span");
+      expiryInfo.textContent = `Expires ${formatAnnouncementDate(
+        announcement.expires_at
+      )}`;
+
+      meta.appendChild(phasePill);
+      meta.appendChild(startInfo);
+      meta.appendChild(expiryInfo);
+
+      const title = document.createElement("h5");
+      title.textContent = announcement.title;
+
+      const message = document.createElement("p");
+      message.textContent = announcement.message;
+
+      copy.appendChild(meta);
+      copy.appendChild(title);
+      copy.appendChild(message);
+
+      const actions = document.createElement("div");
+      actions.className = "announcement-admin-actions";
+
+      const editButton = document.createElement("button");
+      editButton.type = "button";
+      editButton.className =
+        "secondary-button announcement-edit-button";
+      editButton.dataset.id = String(announcement.id);
+      editButton.textContent = "Edit";
+
+      const deleteButton = document.createElement("button");
+      deleteButton.type = "button";
+      deleteButton.className = "danger-button announcement-delete-button";
+      deleteButton.dataset.id = String(announcement.id);
+      deleteButton.textContent = "Delete";
+
+      actions.appendChild(editButton);
+      actions.appendChild(deleteButton);
+
+      item.appendChild(copy);
+      item.appendChild(actions);
       announcementAdminList.appendChild(item);
     });
 
