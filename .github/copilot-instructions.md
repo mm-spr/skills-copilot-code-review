@@ -10,4 +10,4 @@
 - Try to reduce code duplication.
 - Prefer maintainability and readability over optimization.
 - If a method is used a lot, try to optimize it for performance.
-- Prefer explicit error handling over silent failures
+- Prefer explicit error handling over silent failures.
