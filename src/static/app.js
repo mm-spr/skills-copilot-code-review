@@ -166,17 +166,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     activeAnnouncements.forEach((announcement) => {
       const card = document.createElement("article");
+      const topline = document.createElement("div");
+      const chip = document.createElement("span");
+      const expiry = document.createElement("span");
+      const title = document.createElement("h4");
+      const message = document.createElement("p");
+
       card.className = "announcement-card";
-      card.innerHTML = `
-        <div class="announcement-card-topline">
-          <span class="announcement-chip">Live</span>
-          <span class="announcement-expiry">Ends ${formatAnnouncementDate(
-            announcement.expires_at
-          )}</span>
-        </div>
-        <h4>${announcement.title}</h4>
-        <p>${announcement.message}</p>
-      `;
+      topline.className = "announcement-card-topline";
+      chip.className = "announcement-chip";
+      expiry.className = "announcement-expiry";
+
+      chip.textContent = "Live";
+      expiry.textContent = `Ends ${formatAnnouncementDate(
+        announcement.expires_at
+      )}`;
+      title.textContent = announcement.title;
+      message.textContent = announcement.message;
+
+      topline.appendChild(chip);
+      topline.appendChild(expiry);
+      card.appendChild(topline);
+      card.appendChild(title);
+      card.appendChild(message);
       announcementRail.appendChild(card);
     });
   }
