@@ -68,7 +68,7 @@ jobs:
         uses: skills/action-keyphrase-checker@7f463836f6c105e85a182487ae4b628ff61cb904 # v1.1.0
         with:
           text-file: src/static/styles.css
-          keyphrase: announcement-banner
+          keyphrase: announcement-shell
 
       - name: Update comment - step results
         uses: GrantBirki/comment@608e41b19bc973020ec0e189ebfdae935d7fe0cc # v2.1.1
